@@ -1,4 +1,4 @@
-import os
+import os, sys
 from dotenv import load_dotenv
 
 def main():
@@ -11,8 +11,12 @@ def main():
 
     client = genai.Client(api_key=f'{api_key}')
 
-    response = client.models.generate_content(model="gemini-2.0-flash-001", contents="Why is Boot.dev such a great place to learn backend development? Use one paragraph maximum.")
-    
+    try:
+        response = client.models.generate_content(model="gemini-2.0-flash-001", contents=f"{sys.argv[1]}")
+    except Exception as e:
+        print("No prompt provided!")
+        exit(1)
+
     print(response.text)
     print(f"Prompt tokens: {response.usage_metadata.prompt_token_count}")
     print(f"Response tokens: {response.usage_metadata.candidates_token_count}")
