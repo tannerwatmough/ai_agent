@@ -1,5 +1,4 @@
 import os
-from functions.config import MAX_CHAR_LIMIT
 
 def write_file(working_directory, file_path, content):
 	try:
@@ -8,7 +7,7 @@ def write_file(working_directory, file_path, content):
 
 		# Makes sure it is within the specified working_directory including path traversal
 		if not os.path.abspath(file_path).startswith(os.path.abspath(working_directory)):
-			return f'Error: Cannot read "{file_path}" as it is outside the permitted working directory'
+			return f'Error: Cannot write "{file_path}" as it is outside the permitted working directory'
 		
 		# write out content to file
 		with open(file_path, "w") as f:
