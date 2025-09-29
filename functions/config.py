@@ -1,1 +1,2 @@
-MAX_CHAR_LIMIT = 10000
+MAX_CHARS = 10000
+WORKING_DIR = "./calculator"
